@@ -21,6 +21,7 @@ src = s.get('https://api.github.com/users/qhy040404/received_events', verify=Fal
 src_json: dict = json.loads(src)
 
 outdated_time = datetime.datetime.utcnow() - datetime.timedelta(days=1)
+print('Outdated time: ' + outdated_time.strftime('%Y-%m-%d %H:%M:%S'))
 
 event: dict
 for event in src_json:
@@ -34,4 +35,7 @@ for event in src_json:
             ])
 
 if len(target_events) > 0:
+    print(len(target_events))
     em.send_email(target_events, columns)
+else:
+    print('No update.')

@@ -6,6 +6,7 @@ import pandas as pd
 
 
 def generate_tb(data: list, columns: list):
+    print('Generating DataFrame')
     df = pd.DataFrame(data=data, columns=columns)
     return df.to_html(index=False)
 
@@ -27,6 +28,8 @@ def send_email(data: list, columns: list):
         smtp_obj = smtplib.SMTP_SSL(mail_host, 465)
         smtp_obj.login(mail_user, mail_pass)
         smtp_obj.sendmail(mail_user, mail_user, message.as_string())
+        print('Mail sent')
         smtp_obj.quit()
     except smtplib.SMTPException as e:
+        print('Mail Error')
         print(e)
