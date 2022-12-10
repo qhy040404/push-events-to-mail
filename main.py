@@ -35,7 +35,7 @@ for event in src_json:
             ])
 
 if len(target_events) > 0:
-    print(len(target_events))
+    print(str(len(target_events)) + ' events')
     em.send_email(target_events, columns)
 else:
     print('No update.')
