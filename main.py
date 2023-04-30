@@ -28,11 +28,12 @@ for event in src_json:
     if event['type'] == 'WatchEvent':
         latest = datetime.datetime.strptime(event['created_at'], '%Y-%m-%dT%H:%M:%SZ')
         if latest > outdated_time:
-            target_events.append([
-                event['actor']['login'],
-                event['repo']['name'],
-                event['created_at']
-            ])
+            if 'qhy040404' in event['repo']['name']:
+                target_events.append([
+                    event['actor']['login'],
+                    event['repo']['name'],
+                    event['created_at']
+                ])
 
 if len(target_events) > 0:
     print(str(len(target_events)) + ' events')
